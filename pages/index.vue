@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto">
+  <div>
     <CategoryList :categories="categories"/>
     <ProductList center :products="products"/>
   </div>

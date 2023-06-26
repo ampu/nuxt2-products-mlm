@@ -88,7 +88,7 @@ export default {
       return generatePath(LocalPath.PRODUCT, {id: productId})
     },
     isInCart() {
-      return this.$store.getters[`products/getCartProductIds`].some((productId) => this.product.id === productId)
+      return this.$store.getters[`products/getCartProductIds`].includes(this.product.id)
     },
   },
   methods: {

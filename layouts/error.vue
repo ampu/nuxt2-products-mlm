@@ -32,10 +32,16 @@ export default {
     }
   },
   head() {
-    const title = this.error.statusCode === 404
-      ? this.pageNotFound
-      : this.otherError
-    return {title}
+    return {
+      title: this.title,
+    }
+  },
+  computed: {
+    title() {
+      return this.error.statusCode === 404
+        ? this.pageNotFound
+        : this.otherError
+    },
   },
 }
 </script>

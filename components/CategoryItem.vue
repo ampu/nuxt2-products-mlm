@@ -12,7 +12,7 @@
         :src="category.thumbnailUrl"
         cover
       >
-        <VCardTitle class="CategoryItem__title text-h4 font-weight-bold">
+        <VCardTitle class="CategoryItem__title text-h4">
           {{ category.name }}
         </VCardTitle>
       </VImg>
@@ -45,6 +45,7 @@ export default {
     }
 
     .CategoryItem__title {
+      font-weight: 700;
       transform: translateY(-8px);
     }
   }
@@ -53,8 +54,10 @@ export default {
 .CategoryItem__link {
   display: flex;
   overflow: hidden;
+
   font: inherit;
   word-break: keep-all;
+
   text-decoration: none;
   color: inherit;
 }
@@ -72,7 +75,12 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%)
+
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+    )
   }
 }
 

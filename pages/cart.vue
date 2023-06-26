@@ -52,7 +52,7 @@
       dismissible
       @input="ordering = false"
     >
-      Подздравляем с покупкой!
+      Поздравляем с покупкой!
     </VAlert>
   </VCard>
 </template>

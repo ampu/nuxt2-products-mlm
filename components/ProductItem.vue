@@ -11,9 +11,13 @@
         />
       </div>
 
-      <VCardTitle class="ProductItem__title">{{ product.name }}</VCardTitle>
+      <VCardTitle class="ProductItem__title">
+        {{ product.name }}
+      </VCardTitle>
 
-      <VCardText class="ProductItem__text">{{ product.price.toFixed(2) }}₽</VCardText>
+      <VCardText class="ProductItem__text">
+        {{ product.price.toFixed(2) }}₽
+      </VCardText>
       <VCardActions>
         <VSpacer/>
 
@@ -70,7 +74,7 @@ export default {
       return generatePath(LocalPath.PRODUCT, {id: this.product.id})
     },
     isInCart() {
-      return this.$store.getters[`products/getCartProductIds`].some((productId) => this.product.id === productId)
+      return this.$store.getters[`products/getCartProductIds`].includes(this.product.id)
     },
   },
   methods: {

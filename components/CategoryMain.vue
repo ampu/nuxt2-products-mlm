@@ -40,19 +40,6 @@ export default {
     categoryPath() {
       return generatePath(LocalPath.CATEGORY, {id: this.category.id})
     },
-    breadcrumbs() {
-      return [
-        {
-          title: `Главная`,
-          href: LocalPath.INDEX,
-        },
-        {
-          title: this.category.name,
-          href: this.categoryPath,
-          disabled: true,
-        },
-      ]
-    },
   },
 }
 </script>
