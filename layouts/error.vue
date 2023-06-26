@@ -1,16 +1,22 @@
 <template>
-  <v-app dark>
+  <VApp dark>
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>
-    <h1 v-else>
+
+    <h1 v-if="error.statusCode !== 404">
       {{ otherError }}
     </h1>
-    <NuxtLink to="/">
-      Home page
+
+    <NuxtLink :to="LocalPath.INDEX">
+      Главная
     </NuxtLink>
-  </v-app>
+  </VApp>
 </template>
+
+<script setup>
+import {LocalPath} from '~/utils/path-utils'
+</script>
 
 <script>
 export default {
@@ -29,9 +35,7 @@ export default {
     const title = this.error.statusCode === 404
       ? this.pageNotFound
       : this.otherError
-    return {
-      title,
-    }
+    return {title}
   },
 }
 </script>

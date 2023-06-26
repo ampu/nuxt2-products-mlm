@@ -1,26 +1,29 @@
 import {reactiveLocalState} from '~/utils/local-state'
 
 type State = {
-  cartProductIds: number[],
+  cartProductIds: { value: number[] },
 }
 
 export const state: State = {
-  cartProductIds: reactiveLocalState(`akimutin-nuxt2-products-mlm-products`, sessionStorage, []),
+  cartProductIds: reactiveLocalState(`akimutin-nuxt2-products-mlm-products`, sessionStorage, {value: []}),
 }
 
 export const getters = {
-  getCartProductIds: (state: State) => state.cartProductIds,
+  getCartProductIds: (state: State) => state.cartProductIds.value,
 }
 
 export const mutations = {
   addToCart: (state: State, productId: number) => {
-    state.cartProductIds.push(productId)
+    state.cartProductIds.value.push(productId)
   },
   removeFromCart: (state: State, productId: number) => {
-    const order = state.cartProductIds.indexOf(productId)
+    const order = state.cartProductIds.value.indexOf(productId)
     if (order === -1) {
       return
     }
-    state.cartProductIds.splice(order, 1)
+    state.cartProductIds.value.splice(order, 1)
+  },
+  clearCart: (state: State) => {
+    state.cartProductIds.value = []
   },
 }

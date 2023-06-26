@@ -32,6 +32,10 @@ class LocalState {
 export const reactiveLocalState = <TState>(key: string, storage: Storage, defaultState: TState): TState => {
   const localState = new LocalState(key, storage)
   const reactiveState = reactive(localState.getState() ?? defaultState)
-  watch(reactiveState, () => localState.setState(reactiveState), {deep: true})
+
+  watch(reactiveState, () => {
+    localState.setState(reactiveState)
+  }, {deep: true})
+
   return reactiveState
 }

@@ -1,18 +1,16 @@
 <template>
-  <div>
-    Product
-    <ProductMain
-      :product="product"
-    />
-  </div>
+  <ProductMain
+    :product="product"
+  />
 </template>
 
 <script>
 import {apiProvider} from '~/utils/api-provider'
 
 export default {
-  async asyncData({$route, $axios}) {
-    const product = await apiProvider.getProduct($axios, $route.params.id)
+  async asyncData({route, $axios}) {
+    const productId = route.params.id
+    const product = await apiProvider.getProduct($axios, productId)
     return {
       product,
     }

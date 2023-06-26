@@ -1,10 +1,8 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <CategoryList :categories="categories" />
-      <ProductList :products="products" />
-    </v-col>
-  </v-row>
+  <div class="mx-auto">
+    <CategoryList :categories="categories"/>
+    <ProductList center :products="products"/>
+  </div>
 </template>
 
 <script>
@@ -12,8 +10,13 @@ import {apiProvider} from '~/utils/api-provider'
 
 export default {
   async asyncData({$axios}) {
-    const categories = await apiProvider.getCategories($axios)
-    const products = await apiProvider.getProducts($axios)
+    const [
+      categories,
+      products,
+    ] = await Promise.all([
+      apiProvider.getCategories($axios),
+      apiProvider.getProducts($axios),
+    ])
     return {
       categories,
       products,
@@ -27,3 +30,6 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

@@ -22,5 +22,6 @@ module.exports = {
     'space-before-function-paren': [`error`, `never`],
     'require-await': `off`,
     'import/order': `off`,
+    'vue/html-closing-bracket-spacing': `off`,
   },
 }

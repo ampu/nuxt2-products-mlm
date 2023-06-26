@@ -1,11 +1,21 @@
 <template>
-  <div class="CategoryList">
-    <CategoryItem
-      v-for="category of categories"
-      :key="category.id"
-      :category="category"
-    />
-  </div>
+  <VContainer fluid>
+    <VRow
+      dense
+      no-gutters
+      justify="center"
+    >
+      <VCol
+        v-for="category in categories"
+        :key="category.name"
+        cols="3"
+      >
+        <CategoryItem
+          :category="category"
+        />
+      </VCol>
+    </VRow>
+  </VContainer>
 </template>
 
 <script>

@@ -1,33 +1,35 @@
 <template>
-  <v-app>
-    <v-app-bar
+  <VApp>
+    <VAppBar
       fixed
       app
     >
-      <NuxtLink :to="LocalPath.INDEX" aria-label="Home">
-        <v-icon>mdi-store</v-icon>
+      <NuxtLink :to="LocalPath.INDEX" aria-label="Home" class="HomeLink">
+        <VIcon>mdi-store</VIcon>
+        Магазин
       </NuxtLink>
 
-      <v-spacer/>
+      <VSpacer/>
 
-      <NuxtLink :to="LocalPath.CART" aria-label="Cart">
-        <v-icon>mdi-cart</v-icon>
+      <NuxtLink :to="LocalPath.CART" aria-label="Cart" class="CartLink">
+        <VIcon>mdi-cart</VIcon>
+        <strong v-if="cartProductIdsLength">{{ cartProductIdsLength }}</strong>
       </NuxtLink>
-    </v-app-bar>
+    </VAppBar>
 
-    <v-main>
-      <v-container>
+    <VMain>
+      <VContainer>
         <Nuxt/>
-      </v-container>
-    </v-main>
+      </VContainer>
+    </VMain>
 
-    <v-footer
+    <VFooter
       fixed
       app
     >
       <span>&copy; {{ copyrightYear }}</span>
-    </v-footer>
-  </v-app>
+    </VFooter>
+  </VApp>
 </template>
 
 <script setup>
@@ -44,5 +46,33 @@ export default {
       categories: [],
     }
   },
+  computed: {
+    cartProductIdsLength() {
+      return this.$store.getters[`products/getCartProductIds`].length
+    },
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+.HomeLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+.CartLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+</style>
