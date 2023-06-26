@@ -1,5 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
 
+const STORE_ID = `58958138`
+const OAUTH_TOKEN = `public_7BxbJGWyDaZfSQqjVS5Ftr4jzXkS43UD`
+const BASE_URL = `https://app.ecwid.com/api/v3/${STORE_ID}`
+const DEFAULT_HEADERS = {
+  [`Authorization`]: `Bearer ${OAUTH_TOKEN}`,
+}
+
+const {GH_PAGES} = process.env
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -48,12 +57,21 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     `@nuxtjs/axios`,
+    `nuxt-svg-loader`,
   ],
+
+  router: {
+    mode: `hash`,
+    base: GH_PAGES ? `/nuxt2-products-mlm` : `/`,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: `/`,
+    baseURL: BASE_URL,
+    progress: true,
+    debug: true,
+    headers: DEFAULT_HEADERS,
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -73,6 +91,10 @@ export default {
         },
       },
     },
+  },
+
+  svgLoader: {
+    svgoConfig: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

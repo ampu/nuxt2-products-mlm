@@ -19,5 +19,8 @@ module.exports = {
       functions: `always-multiline`,
     }],
     'object-curly-spacing': [`error`, `never`],
+    'space-before-function-paren': [`error`, `never`],
+    'require-await': `off`,
+    'import/order': `off`,
   },
 }

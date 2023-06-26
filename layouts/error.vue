@@ -14,31 +14,29 @@
 
 <script>
 export default {
-  name: 'EmptyLayout',
-  layout: 'empty',
+  name: `EmptyLayout`,
+  layout: `empty`,
   props: {
-    error: {
-      type: Object,
-      default: null
+    error: {type: Object, default: null},
+  },
+  data() {
+    return {
+      pageNotFound: `404 Not Found`,
+      otherError: `An error occurred`,
     }
   },
-  data () {
+  head() {
+    const title = this.error.statusCode === 404
+      ? this.pageNotFound
+      : this.otherError
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+      title,
     }
   },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
-  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   font-size: 20px;
 }
